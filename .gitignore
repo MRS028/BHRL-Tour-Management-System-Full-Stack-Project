@@ -1,0 +1,7 @@
+# Ignore node_modules and .env inside both folders
+BHRL-Tour-Management-Front-End/node_modules/
+BHRL-Tour-Management-Front-End/.env
+BHRL-Tour-Management-Front-End/dist
+
+BHRL-Tour-Management-Server/node_modules/
+BHRL-Tour-Management-Server/.env
