@@ -8,6 +8,7 @@ import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import ContactPage from "../Components/Pages/ContactPage";
 import LoginPage from "../Components/Login and Register/LoginPage";
 import RegisterPage from "../Components/Login and Register/Register";
+import AdminDashboard from "../Dashboard/AdninDashboard/AdminDashboard";
 
 const Router = createBrowserRouter([
   {
@@ -43,6 +44,17 @@ const Router = createBrowserRouter([
         element: <RegisterPage />,
       },
     ],
+  },
+  {
+    path: "/dashboard/admindashboard",
+    element: <AdminDashboard />,
+    children: [
+      {
+        path: "/dashboard/admindashboard",
+        element: <div>p</div>
+      },
+    ],
+
   },
   {
     path: "/*",

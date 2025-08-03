@@ -52,6 +52,9 @@ const Navbar = () => {
             <button className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-semibold py-2 px-4 rounded-lg transition duration-300 transform hover:scale-105">
               Book Now
             </button>
+            <Link to={"/login"} className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-semibold py-2 px-4 rounded-lg transition duration-300 transform hover:scale-105">
+              Join Us
+            </Link>
 
             {/* User Icon & Dropdown */}
             <div className="relative">
@@ -61,7 +64,7 @@ const Navbar = () => {
               {userDropdown && (
                 <div className="absolute right-0 mt-2 w-40 bg-white text-gray-800 rounded shadow-md z-50">
                   <Link to="/dashboard" className="block px-4 py-2 hover:bg-gray-100">Dashboard</Link>
-                  <Link to="/admin" className="block px-4 py-2 hover:bg-gray-100">Admin Panel</Link>
+                  <Link to="/dashboard/admindashboard" className="block px-4 py-2 hover:bg-gray-100">Admin Panel</Link>
                   <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
                   <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
                   <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Register</Link>
@@ -108,7 +111,7 @@ const Navbar = () => {
           {/* Mobile User Dropdown Placeholder */}
           <div className="border-t pt-3 ">
             <Link to="/dashboard" onClick={toggleMenu} className="block py-2">Dashboard</Link>
-            <Link to="/admin" onClick={toggleMenu} className="block py-2">Admin Panel</Link>
+            <Link to="/dashboard/admindashboard" onClick={toggleMenu} className="block py-2">Admin Panel</Link>
             <Link to="/profile" onClick={toggleMenu} className="block py-2">Profile</Link>
             <Link to="/login" onClick={toggleMenu} className="block py-2">Login</Link>
             <Link to="/register" onClick={toggleMenu} className="block py-2">Register</Link>
