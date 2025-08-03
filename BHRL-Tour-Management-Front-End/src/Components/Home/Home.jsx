@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')" }}>
+      <div className="relative rounded-b-2xl h-screen bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')" }}>
         <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-indigo-900 opacity-20"></div>
         <div className="relative container mx-auto px-4 py-24 flex flex-col items-center justify-center h-full text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Discover Your Next Adventure</h1>
@@ -19,7 +19,7 @@ const Home = () => {
       </div>
 
       {/* Features Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">Why Travel With Us</h2>
@@ -118,14 +118,14 @@ const Home = () => {
       </div>
 
       {/* CTA Section */}
-<div className="py-16 bg-gradient-to-r from-indigo-700 to-fuchsia-600 text-white">
+<div className="py-16 bg-gradient-to-r rounded-2xl from-indigo-700 to-fuchsia-600 text-white">
   <div className="container mx-auto px-4 text-center">
     <h2 className="text-3xl font-bold mb-4">Ready for Your Next Adventure?</h2>
     <p className="text-white max-w-2xl mx-auto mb-8">
       Join thousands of satisfied travelers who have experienced the world with us
     </p>
     <div className="flex flex-col sm:flex-row justify-center gap-4">
-      <button className="bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-md">
+      <button className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-md">
         Book a Tour
       </button>
       <button className="bg-white/10 hover:bg-white/20 border border-white text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 backdrop-blur-sm">

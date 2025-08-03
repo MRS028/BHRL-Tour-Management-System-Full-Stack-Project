@@ -5,6 +5,7 @@ import AboutPage from "../Components/Pages/AboutPage";
 import CommunityPage from "../Components/Pages/CommunityPage";
 import TourPage from "../Components/Pages/Tourpage";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import ContactPage from "../Components/Pages/ContactPage";
 
 const Router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const Router = createBrowserRouter([
       {
         path: "/community",
         element: <CommunityPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
       },
     ],
   },

@@ -99,7 +99,7 @@ useScrollToTop();
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-white py-8">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">All Tours of BHRL</h1>
