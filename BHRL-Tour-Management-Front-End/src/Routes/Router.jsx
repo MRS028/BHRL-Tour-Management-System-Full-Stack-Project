@@ -6,6 +6,8 @@ import CommunityPage from "../Components/Pages/CommunityPage";
 import TourPage from "../Components/Pages/Tourpage";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import ContactPage from "../Components/Pages/ContactPage";
+import LoginPage from "../Components/Login and Register/LoginPage";
+import RegisterPage from "../Components/Login and Register/Register";
 
 const Router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const Router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
       },
     ],
   },
