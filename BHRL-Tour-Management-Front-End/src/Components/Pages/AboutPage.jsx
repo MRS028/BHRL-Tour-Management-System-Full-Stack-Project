@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import useScrollToTop from '../../Hooks/useScrollToTop';
 // import developerImage from '../assets/developer.jpg';
 
 const AboutPage = () => {
+    useScrollToTop();
   return (
     <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">

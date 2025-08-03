@@ -1,15 +1,17 @@
 import React from 'react';
 import { FaMapMarkerAlt, FaStar, FaCalendarAlt, FaUserFriends } from 'react-icons/fa';
+import useScrollToTop from '../../Hooks/useScrollToTop';
 
 const Home = () => {
+  useScrollToTop();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative h-screen bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')" }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-indigo-900 opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-indigo-900 opacity-20"></div>
         <div className="relative container mx-auto px-4 py-24 flex flex-col items-center justify-center h-full text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Discover Your Next Adventure</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mb-10">Explore breathtaking destinations with our expertly crafted tours</p>
+          <p className="text-xl text-green-100 max-w-2xl mb-10">Explore breathtaking destinations with our expertly crafted tours</p>
           <button className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
             Explore Tours
           </button>
@@ -26,10 +28,10 @@ const Home = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <FaMapMarkerAlt className="text-3xl text-blue-700" />, title: "Amazing Destinations", desc: "Handpicked locations worldwide" },
-              { icon: <FaStar className="text-3xl text-blue-700" />, title: "Best Price Guarantee", desc: "Competitive prices with no hidden fees" },
-              { icon: <FaCalendarAlt className="text-3xl text-blue-700" />, title: "Flexible Booking", desc: "Easy date changes and cancellations" },
-              { icon: <FaUserFriends className="text-3xl text-blue-700" />, title: "Expert Guides", desc: "Knowledgeable local tour guides" }
+              { icon: <FaMapMarkerAlt className="text-3xl text-green-700" />, title: "Amazing Destinations", desc: "Handpicked locations worldwide" },
+              { icon: <FaStar className="text-3xl text-green-700" />, title: "Best Price Guarantee", desc: "Competitive prices with no hidden fees" },
+              { icon: <FaCalendarAlt className="text-3xl text-green-700" />, title: "Flexible Booking", desc: "Easy date changes and cancellations" },
+              { icon: <FaUserFriends className="text-3xl text-green-700" />, title: "Expert Guides", desc: "Knowledgeable local tour guides" }
             ].map((feature, index) => (
               <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center">
                 <div className="flex justify-center mb-4">{feature.icon}</div>
@@ -55,7 +57,7 @@ const Home = () => {
                 <div className="h-56 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')" }}></div>
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-3">
-                    <span className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">Adventure</span>
+                    <span className="bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded">Adventure</span>
                     <div className="flex items-center text-yellow-500">
                       <FaStar className="mr-1" />
                       <span>4.8</span>
@@ -64,8 +66,8 @@ const Home = () => {
                   <h3 className="text-xl font-bold text-gray-800 mb-2">Mountain Trekking Adventure</h3>
                   <p className="text-gray-600 mb-4">Experience breathtaking mountain views and challenging trails</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold text-blue-700">$899</span>
-                    <button className="bg-blue-700 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
+                    <span className="text-xl font-bold text-green-700">$899</span>
+                    <button className="bg-green-700 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">
                       View Details
                     </button>
                   </div>
@@ -75,7 +77,7 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-12">
-            <button className="bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-800 hover:to-indigo-900 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+            <button className="bg-gradient-to-r from-green-700 to-indigo-800 hover:from-green-800 hover:to-indigo-900 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
               View All Tours
             </button>
           </div>
@@ -83,7 +85,7 @@ const Home = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className="py-16 bg-blue-50">
+      <div className="py-16 bg-green-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">What Our Travelers Say</h2>
@@ -94,7 +96,7 @@ const Home = () => {
             {[1, 2, 3].map((item) => (
               <div key={item} className="bg-white p-6 rounded-xl shadow-md">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center text-blue-800 font-bold mr-4">
+                  <div className="w-12 h-12 rounded-full bg-green-200 flex items-center justify-center text-green-800 font-bold mr-4">
                     JD
                   </div>
                   <div>
@@ -116,20 +118,23 @@ const Home = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 bg-gradient-to-r from-blue-800 to-indigo-900 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready for Your Next Adventure?</h2>
-          <p className="text-blue-100 max-w-2xl mx-auto mb-8">Join thousands of satisfied travelers who have experienced the world with us</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
-              Book a Tour
-            </button>
-            <button className="bg-transparent border-2 border-white hover:bg-white/20 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-              Contact Us
-            </button>
-          </div>
-        </div>
-      </div>
+<div className="py-16 bg-gradient-to-r from-indigo-700 to-fuchsia-600 text-white">
+  <div className="container mx-auto px-4 text-center">
+    <h2 className="text-3xl font-bold mb-4">Ready for Your Next Adventure?</h2>
+    <p className="text-white max-w-2xl mx-auto mb-8">
+      Join thousands of satisfied travelers who have experienced the world with us
+    </p>
+    <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <button className="bg-cyan-400 hover:bg-cyan-300 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-md">
+        Book a Tour
+      </button>
+      <button className="bg-white/10 hover:bg-white/20 border border-white text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 backdrop-blur-sm">
+        Contact Us
+      </button>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };
