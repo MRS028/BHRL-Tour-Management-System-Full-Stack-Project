@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff, FiUser, FiMail, FiLock } from "react-icons/fi";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/axiosPublic";
 import Swal from 'sweetalert2';
+import { toast } from "sonner";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -53,13 +54,7 @@ const onSubmit = async (data) => {
     // Optional DB call
     // await axiosPublic.put(`/users/${loggedInUser.uid}`, updatedUser);
 
-    await Swal.fire({
-      icon: 'success',
-      title: 'Account Created!',
-      text: 'Redirecting to Home...',
-      timer: 2000,
-      showConfirmButton: false,
-    });
+    await toast.success("Registration successful!");
 
     navigate("/");
   } catch (error) {

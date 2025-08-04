@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { toast } from 'sonner';
 
 const LoginPage = () => {
   const {
@@ -25,12 +26,7 @@ const LoginPage = () => {
       const user = res.user;
       console.log(user);
 
-      Swal.fire({
-        title: "Login Success",
-        text: "Assalamuwalaikum, Welcome to BHRL Tours",
-        icon: "success",
-        timer: 1500,
-      });
+      toast.success("Login successful!");
       navigate(from, {replace: true});  
     }).catch((err) => {
       Swal.fire({

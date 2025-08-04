@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaMapMarkerAlt, FaStar, FaCalendarAlt, FaUserFriends } from 'react-icons/fa';
 import useScrollToTop from '../../Hooks/useScrollToTop';
+import { Button } from '../ui/button';
 
 const Home = () => {
   useScrollToTop();
@@ -77,9 +78,10 @@ const Home = () => {
           </div>
           
           <div className="text-center mt-12">
-            <button className="bg-gradient-to-r from-green-700 to-indigo-800 hover:from-green-800 hover:to-indigo-900 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+            <Button className='bg-yellow-600 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300'>
               View All Tours
-            </button>
+            </Button>
+            
           </div>
         </div>
       </div>
@@ -125,12 +127,12 @@ const Home = () => {
       Join thousands of satisfied travelers who have experienced the world with us
     </p>
     <div className="flex flex-col sm:flex-row justify-center gap-4">
-      <button className="bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-md">
+      <Button className='bg-white/10 hover:bg-white/20 border border-white text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 backdrop-blur-sm'>
         Book a Tour
-      </button>
-      <button className="bg-white/10 hover:bg-white/20 border border-white text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 backdrop-blur-sm">
+      </Button>
+      <Button className='bg-white/10 hover:bg-white/20 border border-white text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 backdrop-blur-sm'>
         Contact Us
-      </button>
+      </Button>
     </div>
   </div>
 </div>
