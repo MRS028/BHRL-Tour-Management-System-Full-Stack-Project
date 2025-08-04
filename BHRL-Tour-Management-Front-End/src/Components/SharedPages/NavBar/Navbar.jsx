@@ -56,66 +56,66 @@ const Navbar = () => {
   return (
     <>
       {/* ===== Top Bar - Minor tweaks for consistency ===== */}
-      <div className="bg-gradient-to-r hidden md:block from-teal-700 to-cyan-800 text-white shadow-md">
-        <div className="container mx-auto px-4 py-2 text-sm">
-          <div className="flex justify-between items-center flex-wrap">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <span>📧</span>
-                <a
-                  href="mailto:info@travelexplore.com"
-                  className="hover:text-amber-300 transition-colors duration-300"
-                >
-                  info@travelexplore.com
-                </a>
-              </div>
-              <div className="hidden sm:flex items-center gap-2">
-                <span>📞</span>
-                <a
-                  href="tel:+8801712345678"
-                  className="hover:text-amber-300 transition-colors duration-300"
-                >
-                  +880 171 234-5678
-                </a>
-              </div>
-            </div>
-            <div className="flex items-center gap-6 mt-2 sm:mt-0">
-              <div className="flex gap-4 text-white">
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Facebook"
-                  className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Twitter"
-                  className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"
-                >
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Instagram"
-                  className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"
-                >
-                  <i className="fab fa-instagram"></i>
-                </a>
-              </div>
-              <span className="bg-amber-400 text-teal-900 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider transform hover:scale-105 transition-transform duration-300 cursor-pointer">
-                ✨ Festive Offer Live!
-              </span>
-            </div>
-          </div>
-        </div>
+      <div className="bg-gradient-to-r from-blue-800 via-purple-700 to-pink-600 text-white text-sm py-2 shadow-lg hidden md:block">
+  <div className="max-w-7xl mx-auto px-4 flex justify-between items-center flex-wrap gap-y-2">
+    
+    {/* Left Info: Contact, Hours, Location */}
+    <div className="flex flex-wrap items-center gap-6">
+      {/* Email */}
+      <div className="flex items-center gap-2">
+        <i className="fas fa-envelope text-yellow-300"></i>
+        <a href="mailto:support@travelo.com" className="hover:underline hover:text-yellow-200 transition">
+          support@travelo.com
+        </a>
       </div>
+
+      {/* Phone */}
+      <div className="flex items-center gap-2">
+        <i className="fas fa-phone-alt text-green-300"></i>
+        <a href="tel:+880123456789" className="hover:underline hover:text-green-200 transition">
+          +880 1234-56789
+        </a>
+      </div>
+
+      {/* Working Hours */}
+      <div className="hidden lg:flex items-center gap-2">
+        <i className="fas fa-clock text-orange-300"></i>
+        <span>Mon–Sat: 9:00 AM – 8:00 PM</span>
+      </div>
+
+      {/* Location */}
+      <div className="hidden xl:flex items-center gap-2">
+        <i className="fas fa-map-marker-alt text-red-300"></i>
+        <span>Gulshan, Dhaka, Bangladesh</span>
+      </div>
+    </div>
+
+    {/* Right Info: Social + Offer */}
+    <div className="flex items-center gap-4">
+      {/* Social Icons */}
+      <div className="flex gap-3 text-lg">
+        <a href="#" title="Facebook" className="hover:text-blue-300 transition transform hover:scale-110">
+          <i className="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" title="Twitter" className="hover:text-cyan-300 transition transform hover:scale-110">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="#" title="Instagram" className="hover:text-pink-300 transition transform hover:scale-110">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a href="#" title="YouTube" className="hover:text-red-400 transition transform hover:scale-110">
+          <i className="fab fa-youtube"></i>
+        </a>
+      </div>
+
+      {/* Special Offer */}
+      <span className="bg-yellow-300 text-purple-900 font-bold px-3 py-1.5 rounded-full text-xs uppercase tracking-wider shadow-md animate-bounce hover:scale-105 transition">
+        🎒 Travel Carnival Week – Save up to 40%!
+      </span>
+    </div>
+  </div>
+</div>
+
       {/* ===== Main Navbar ===== */}
       <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg shadow-lg border-b border-slate-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
