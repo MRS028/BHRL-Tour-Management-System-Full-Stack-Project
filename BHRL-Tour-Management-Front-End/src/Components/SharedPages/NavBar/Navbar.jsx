@@ -91,13 +91,13 @@ const Navbar = () => {
                     Profile
                   </Link>
                   <Link
-                    to="/login"
+                    to="/auth/login"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Login
                   </Link>
                   <Link
-                    to="/register"
+                    to="/auth/register"
                     className="block px-4 py-2 hover:bg-gray-100"
                   >
                     Register
@@ -189,16 +189,16 @@ const Navbar = () => {
             <Link to="/profile" onClick={toggleMenu} className="block py-2">
               Profile
             </Link>
-            <Link to="/login" onClick={toggleMenu} className="block py-2">
+            <Link to="/auth/login" onClick={toggleMenu} className="block py-2">
               Login
             </Link>
-            <Link to="/register" onClick={toggleMenu} className="block py-2">
+            <Link to="/auth/register" onClick={toggleMenu} className="block py-2">
               Register
             </Link>
             <button className="w-full text-left py-2">Logout</button>
           </div>
           <Link
-            to={"/login"}
+            to={"/auth/login"}
             className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-semibold py-2 px-4 rounded-lg transition duration-300 transform hover:scale-105"
           >
             Join Us

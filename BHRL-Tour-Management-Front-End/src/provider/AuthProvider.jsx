@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import app from "../firebase.config";
 import {
   createUserWithEmailAndPassword,
@@ -6,6 +6,9 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 import useAxiosPublic from "../Hooks/axiosPublic";
 
@@ -19,10 +22,12 @@ const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const axiosPublic = useAxiosPublic();
 
-  const createUser = () => {
+  const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const loginUser = () => {
+
+  const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -31,10 +36,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+
   const logoutUser = () => {
     setLoading(true);
     return signOut(auth);
   };
+
   const updateUserData = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -47,46 +54,39 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
 
-      //use for jwt
-
-    //  if (currentUser) {
-    //     //get token and store in client
-    //     const userInfo = { email: currentUser.email };
-    //     axiosPublic.post("/jwt", userInfo).then((res) => {
-    //       if (res.data?.token) {
-    //         localStorage.setItem("access-token", res.data?.token);
-    //         setLoading(false);
-    //       }
-    //     });
-    //   } else {
-    //     //remove token
-    //     localStorage.removeItem("access-token");
-    //     setLoading(false);
-    //   }
-
-     
+      // Uncomment this block if you're using JWT
+      /*
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data?.token) {
+            localStorage.setItem("access-token", res.data?.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
+      */
     });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
-  return () => {
-      return unsubscribe
+    return unsubscribe; // ✅ Correct cleanup
+  }, [axiosPublic]);
+
+  const authInfo = {
+    user,
+    loading,
+    createUser,
+    loginUser,
+    googleSingIn,
+    logoutUser,
+    updateUserData,
   };
-};
 
-const authInfo = {
-  user,
-  loading,
-  createUser,
-  loginUser,
-  googleSingIn,
-  logoutUser,
-  updateUserData,
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
-return (
-  <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-)
 
 export default AuthProvider;

@@ -60,7 +60,7 @@ const LoginPage = () => {
           </form>
           <p className="mt-6 text-center text-sm text-gray-600">
             Don’t have an account?{' '}
-            <Link to="/register" className="text-green-700 font-semibold hover:underline">
+            <Link to="/auth/register" className="text-green-700 font-semibold hover:underline">
               Register here
             </Link>
           </p>
