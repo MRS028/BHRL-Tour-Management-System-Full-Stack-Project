@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { toast } from 'sonner';
+import useScrollToTop from '@/Hooks/useScrollToTop';
 
 const LoginPage = () => {
+  useScrollToTop();
   const {
     register,
     handleSubmit,

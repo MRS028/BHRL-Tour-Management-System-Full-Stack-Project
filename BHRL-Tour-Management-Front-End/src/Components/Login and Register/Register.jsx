@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/axiosPublic";
 import Swal from 'sweetalert2';
 import { toast } from "sonner";
+import useScrollToTop from "@/Hooks/useScrollToTop";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +18,7 @@ const RegisterPage = () => {
   const {createUser,updateUserData} = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  useScrollToTop();
 
   const {
     register,
@@ -71,7 +73,7 @@ const onSubmit = async (data) => {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br pt-5 pb-5">
       <div className="w-full max-w-6xl grid md:grid-cols-2 gap-0 bg-white rounded-3xl shadow-xl overflow-hidden mx-4 border border-gray-100">
         {/* Left Section */}
         <div className="hidden md:flex flex-col justify-center items-center bg-gradient-to-br from-green-700 to-green-900 text-white px-10 py-16 relative overflow-hidden">
