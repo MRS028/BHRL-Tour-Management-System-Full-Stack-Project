@@ -109,7 +109,7 @@ const Footer = () => {
               <li className="flex items-start">
                 <FaMapMarkerAlt className="mt-1 mr-3 h-5 w-5 text-amber-400 flex-shrink-0" />
                 <span className="text-slate-400">
-                  Jahangirnagar University, Savar, Dhaka-1342, Bangladesh
+                   Dhaka-1342, Bangladesh
                 </span>
               </li>
               <li className="flex items-center">

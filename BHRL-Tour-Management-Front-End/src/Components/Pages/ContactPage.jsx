@@ -53,7 +53,7 @@ const ContactPage = () => {
                 <ul className="space-y-6 text-slate-600">
                   <li className="flex items-start gap-4">
                     <FaMapMarkerAlt className="text-teal-600 text-xl mt-1 flex-shrink-0" />
-                    <span>Jahangirnagar University, Savar, Dhaka-1342, Bangladesh</span>
+                    <span>House-1, Road-3, Dhaka-1342, Bangladesh</span>
                   </li>
                   <li className="flex items-center gap-4">
                     <FaPhone className="text-teal-600 text-xl" />
