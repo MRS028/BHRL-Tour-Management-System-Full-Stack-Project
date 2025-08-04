@@ -29,8 +29,8 @@ const Navbar = () => {
       confirmButtonColor: "#f59e0b",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, log out!",
-      background: '#1e293b',
-      color: '#ffffff'
+      background: "#1e293b",
+      color: "#ffffff",
     }).then((result) => {
       if (result.isConfirmed) {
         logoutUser();
@@ -39,17 +39,20 @@ const Navbar = () => {
           title: "Logged out successfully!",
           showConfirmButton: false,
           timer: 1500,
-          background: '#1e293b',
-          color: '#ffffff'
+          background: "#1e293b",
+          color: "#ffffff",
         });
       }
     });
   };
 
-  const linkStyle = "px-1 py-2 text-slate-300 hover:text-amber-400 transition-colors duration-300 relative font-medium";
-  const activeStyle = "text-amber-400 after:absolute after:bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 rounded-sm";
-  const ctaButton = "font-semibold text-slate-900 bg-gradient-to-r from-amber-400 to-pink-500 hover:shadow-lg hover:shadow-amber-500/40 py-2 px-5 rounded-full transition-all duration-300 transform hover:scale-105";
-  
+  const linkStyle =
+    "px-1 py-2 text-slate-300 hover:text-amber-400 transition-colors duration-300 relative font-medium";
+  const activeStyle =
+    "text-amber-400 after:absolute after:bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 rounded-sm";
+  const ctaButton =
+    "font-semibold text-slate-900 bg-gradient-to-r from-amber-400 to-pink-500 hover:shadow-lg hover:shadow-amber-500/40 py-2 px-5 rounded-full transition-all duration-300 transform hover:scale-105";
+
   return (
     <>
       {/* ===== Top Bar - Minor tweaks for consistency ===== */}
@@ -59,22 +62,52 @@ const Navbar = () => {
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <span>📧</span>
-                <a href="mailto:info@travelexplore.com" className="hover:text-amber-300 transition-colors duration-300">
+                <a
+                  href="mailto:info@travelexplore.com"
+                  className="hover:text-amber-300 transition-colors duration-300"
+                >
                   info@travelexplore.com
                 </a>
               </div>
               <div className="hidden sm:flex items-center gap-2">
                 <span>📞</span>
-                <a href="tel:+8801712345678" className="hover:text-amber-300 transition-colors duration-300">
+                <a
+                  href="tel:+8801712345678"
+                  className="hover:text-amber-300 transition-colors duration-300"
+                >
                   +880 171 234-5678
                 </a>
               </div>
             </div>
             <div className="flex items-center gap-6 mt-2 sm:mt-0">
               <div className="flex gap-4 text-white">
-                 <a href="#" target="_blank" rel="noopener noreferrer" title="Facebook" className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"><i className="fab fa-facebook-f"></i></a>
-                 <a href="#" target="_blank" rel="noopener noreferrer" title="Twitter" className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"><i className="fab fa-twitter"></i></a>
-                 <a href="#" target="_blank" rel="noopener noreferrer" title="Instagram" className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"><i className="fab fa-instagram"></i></a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Facebook"
+                  className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"
+                >
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Twitter"
+                  className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"
+                >
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Instagram"
+                  className="hover:text-amber-300 transform hover:scale-110 transition-all duration-300"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
               </div>
               <span className="bg-amber-400 text-teal-900 font-bold px-3 py-1 rounded-full text-xs uppercase tracking-wider transform hover:scale-105 transition-transform duration-300 cursor-pointer">
                 ✨ Festive Offer Live!
@@ -90,11 +123,15 @@ const Navbar = () => {
             {/* Logo and Brand */}
             <Link to="/" className="flex items-center space-x-3">
               <div className="bg-white p-1 rounded-full shadow-md">
-                <img className="h-10 w-10" src={logo} alt="TravelX Logo" />
+                <img
+                  className="h-10 w-10"
+                  src={logo}
+                  alt="Tour With BHRL Logo"
+                />
               </div>
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-pink-500 bg-clip-text text-transparent">
-                  TravelX
+                  Tour With BHRL
                 </h1>
                 <p className="text-xs text-slate-400 hidden sm:block">
                   Your Journey Begins Here
@@ -117,7 +154,9 @@ const Navbar = () => {
               ))}
 
               {!isLoggedIn ? (
-                <Link to="/auth/register" className={ctaButton}>Join Us</Link>
+                <Link to="/auth/register" className={ctaButton}>
+                  Join Us
+                </Link>
               ) : (
                 //  ======= FIX APPLIED HERE =======
                 // 1. Added `py-4 -my-4` to the group to create a hoverable area without changing layout.
@@ -130,14 +169,31 @@ const Navbar = () => {
                   {/* 2. Changed `hidden group-hover:block` to opacity transitions for a smooth fade and to fix the hover gap issue. */}
                   <div className="absolute right-0 mt-2 w-48 bg-slate-800 text-slate-200 rounded-md shadow-lg z-50 transition-all duration-300 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto">
                     <div className="px-4 py-3 border-b border-slate-700">
-                      <p className="text-sm font-semibold truncate">{user.displayName || "Welcome"}</p>
-                      <p className="text-xs text-slate-400 truncate">{user.email}</p>
+                      <p className="text-sm font-semibold truncate">
+                        {user.displayName || "Welcome"}
+                      </p>
+                      <p className="text-xs text-slate-400 truncate">
+                        {user.email}
+                      </p>
                     </div>
-                    <Link to="/dashboard" className="block px-4 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors">Dashboard</Link>
+                    <Link
+                      to="/dashboard"
+                      className="block px-4 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                    >
+                      Dashboard
+                    </Link>
                     {isAdmin && (
-                      <Link to="/dashboard/admindashboard" className="block px-4 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors">Admin Panel</Link>
+                      <Link
+                        to="/dashboard/admindashboard"
+                        className="block px-4 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                      >
+                        Admin Panel
+                      </Link>
                     )}
-                    <button onClick={handleLogOut} className="w-full text-left px-4 py-2 text-pink-400 hover:bg-slate-700 transition-colors rounded-b-md">
+                    <button
+                      onClick={handleLogOut}
+                      className="w-full text-left px-4 py-2 text-pink-400 hover:bg-slate-700 transition-colors rounded-b-md"
+                    >
                       Logout
                     </button>
                   </div>
@@ -145,17 +201,31 @@ const Navbar = () => {
               )}
             </div>
 
-           {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={toggleMenu}
                 className="text-slate-300 hover:text-amber-400 focus:outline-none p-2"
               >
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
                   {isOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
                   )}
                 </svg>
               </button>
@@ -172,7 +242,9 @@ const Navbar = () => {
                 to={path}
                 onClick={toggleMenu}
                 className={({ isActive }) =>
-                  isActive ? `${linkStyle} ${activeStyle} block py-2` : `${linkStyle} block py-2`
+                  isActive
+                    ? `${linkStyle} ${activeStyle} block py-2`
+                    : `${linkStyle} block py-2`
                 }
               >
                 {name}
@@ -180,14 +252,38 @@ const Navbar = () => {
             ))}
             <div className="border-t border-slate-700 pt-4 space-y-3">
               {!isLoggedIn ? (
-                 <Link to="/auth/register" onClick={toggleMenu} className={`${ctaButton} block text-center`}>Join Us</Link>
+                <Link
+                  to="/auth/register"
+                  onClick={toggleMenu}
+                  className={`${ctaButton} block text-center`}
+                >
+                  Join Us
+                </Link>
               ) : (
                 <>
-                  <Link to="/dashboard" onClick={toggleMenu} className="block py-2 rounded hover:bg-slate-700 px-2">Dashboard</Link>
+                  <Link
+                    to="/dashboard"
+                    onClick={toggleMenu}
+                    className="block py-2 rounded hover:bg-slate-700 px-2"
+                  >
+                    Dashboard
+                  </Link>
                   {isAdmin && (
-                    <Link to="/dashboard/admindashboard" onClick={toggleMenu} className="block py-2 rounded hover:bg-slate-700 px-2">Admin Panel</Link>
+                    <Link
+                      to="/dashboard/admindashboard"
+                      onClick={toggleMenu}
+                      className="block py-2 rounded hover:bg-slate-700 px-2"
+                    >
+                      Admin Panel
+                    </Link>
                   )}
-                  <button onClick={() => { handleLogOut(); toggleMenu(); }} className="w-full text-left py-2 text-pink-400 rounded hover:bg-slate-700 px-2">
+                  <button
+                    onClick={() => {
+                      handleLogOut();
+                      toggleMenu();
+                    }}
+                    className="w-full text-left py-2 text-pink-400 rounded hover:bg-slate-700 px-2"
+                  >
                     Logout
                   </button>
                 </>
