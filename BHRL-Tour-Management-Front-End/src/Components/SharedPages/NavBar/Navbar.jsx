@@ -4,7 +4,6 @@ import logo from "../../../assets/logo.jpeg"; // Your logo path
 import useAuth from "@/Hooks/useAuth"; // Your auth hook path
 import Swal from "sweetalert2";
 
-// --- Navigation links remain the same ---
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Tours", path: "/tours" },
@@ -17,7 +16,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logoutUser } = useAuth();
 
-  // --- All authentication logic is untouched ---
   const isLoggedIn = user?.email;
   const isAdmin = user?.role === "admin";
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -28,11 +26,11 @@ const Navbar = () => {
       text: "You want to log out?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#f59e0b", // Amber color for confirm
+      confirmButtonColor: "#f59e0b",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, log out!",
-      background: '#1e293b', // Slate-800 background for modal
-      color: '#ffffff' // White text for modal
+      background: '#1e293b',
+      color: '#ffffff'
     }).then((result) => {
       if (result.isConfirmed) {
         logoutUser();
@@ -44,12 +42,10 @@ const Navbar = () => {
           background: '#1e293b',
           color: '#ffffff'
         });
-        // No need to reload, React state will handle the UI update
       }
     });
   };
 
-  // --- Refreshed Tailwind CSS class strings for the new look ---
   const linkStyle = "px-1 py-2 text-slate-300 hover:text-amber-400 transition-colors duration-300 relative font-medium";
   const activeStyle = "text-amber-400 after:absolute after:bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 rounded-sm";
   const ctaButton = "font-semibold text-slate-900 bg-gradient-to-r from-amber-400 to-pink-500 hover:shadow-lg hover:shadow-amber-500/40 py-2 px-5 rounded-full transition-all duration-300 transform hover:scale-105";
@@ -57,7 +53,7 @@ const Navbar = () => {
   return (
     <>
       {/* ===== Top Bar - Minor tweaks for consistency ===== */}
-      <div className="bg-gradient-to-r from-teal-700 to-cyan-800 text-white shadow-md">
+      <div className="bg-gradient-to-r hidden md:block from-teal-700 to-cyan-800 text-white shadow-md">
         <div className="container mx-auto px-4 py-2 text-sm">
           <div className="flex justify-between items-center flex-wrap">
             <div className="flex items-center gap-6">
@@ -87,12 +83,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* ===== Main Navbar - Revamped for a Cool, Festive Vibe ===== */}
+      {/* ===== Main Navbar ===== */}
       <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg shadow-lg border-b border-slate-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
-            
             {/* Logo and Brand */}
             <Link to="/" className="flex items-center space-x-3">
               <div className="bg-white p-1 rounded-full shadow-md">
@@ -125,13 +119,16 @@ const Navbar = () => {
               {!isLoggedIn ? (
                 <Link to="/auth/register" className={ctaButton}>Join Us</Link>
               ) : (
-                <div className="relative group">
+                //  ======= FIX APPLIED HERE =======
+                // 1. Added `py-4 -my-4` to the group to create a hoverable area without changing layout.
+                <div className="relative group -my-4 py-4">
                   <img
                     src={user.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
                     alt="Profile"
                     className="h-11 w-11 rounded-full border-2 border-slate-400 group-hover:border-amber-400 cursor-pointer transition-all duration-300"
                   />
-                  <div className="absolute right-0 mt-3 hidden group-hover:block w-48 bg-slate-800 text-slate-200 rounded-md shadow-lg z-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100 ring-1 ring-slate-700">
+                  {/* 2. Changed `hidden group-hover:block` to opacity transitions for a smooth fade and to fix the hover gap issue. */}
+                  <div className="absolute right-0 mt-2 w-48 bg-slate-800 text-slate-200 rounded-md shadow-lg z-50 transition-all duration-300 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto">
                     <div className="px-4 py-3 border-b border-slate-700">
                       <p className="text-sm font-semibold truncate">{user.displayName || "Welcome"}</p>
                       <p className="text-xs text-slate-400 truncate">{user.email}</p>
@@ -148,7 +145,7 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Mobile Menu Toggle */}
+           {/* Mobile Menu Toggle */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={toggleMenu}
