@@ -11,6 +11,7 @@ import RegisterPage from "../Components/Login and Register/Register";
 import AdminDashboard from "../Dashboard/AdninDashboard/AdminDashboard";
 import AuthLayout from "../Components/Login and Register/AuthLayout";
 import BookingForm from "@/Components/BookingData/BookingForm/BookingForm";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -53,7 +54,7 @@ const Router = createBrowserRouter([
       },
       {
         path: "/bookingtour",
-        element: <BookingForm/>
+        element: <PrivateRoute><BookingForm/></PrivateRoute>
       }
     ],
   },
