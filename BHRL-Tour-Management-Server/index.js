@@ -8,85 +8,110 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// ==== Middleware ====
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 
-// MongoDB Connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mydb';
-mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// ==== MongoDB Connection ====
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/tour_management';
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('✅ MongoDB connected'))
   .catch((err) => console.error('❌ MongoDB connection failed:', err));
 
-// Product Schema & Model
-const productSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  price: { type: Number, required: true },
-  inStock: { type: Boolean, default: true },
+// ==== Mongoose Schema & Model ====
+const bookingSchema = new mongoose.Schema({
+  departure: { type: String, required: true },
+  destination: { type: String, required: true },
+  departureDate: { type: Date, required: true },
+  tripType: { type: String, enum: ['one-way', 'round-trip'], required: true },
+  class: { type: String, enum: ['economy', 'business'], required: true },
+
+  adults: { type: Number, required: true, min: 1 },
+  children: { type: Number, required: true, min: 0 },
+
+  phone: { type: String, required: true },
+  email: { type: String, required: true },
+  terms: { type: Boolean, required: true },
+
+  // ✅ Optional fields
+  returnDate: { type: Date },
+  pricePerTicket: { type: Number },
+  totalAmount: { type: Number },
+  bookingReference: { type: String },
+  paymentStatus: { type: String, enum: ['pending', 'paid', 'failed'], default: 'pending' },
+  notes: { type: String },
 }, { timestamps: true });
 
-const Product = mongoose.model('Product', productSchema);
+const Booking = mongoose.model('bookings', bookingSchema);
 
-// Routes
+
+// ==== Routes ====
+
 app.get('/', (req, res) => {
-  res.send('BHRL Tour Management Server is Running!✅✅✅');
+  res.send('🌍 BHRL Tour Management API is running!');
 });
 
-// CREATE
-app.post('/api/products', async (req, res) => {
+// CREATE Booking
+app.post('/api/bookings', async (req, res) => {
   try {
-    const product = new Product(req.body);
-    const saved = await product.save();
+    // console.log("📥 Booking request:", req.body);
+    const booking = new Booking(req.body);
+    const saved = await booking.save();
     res.status(201).json(saved);
   } catch (err) {
+    console.error("❌ Booking error:", err.message);
     res.status(400).json({ error: err.message });
   }
 });
 
-// READ ALL
-app.get('/api/products', async (req, res) => {
+// GET All Bookings
+app.get('/api/bookings', async (req, res) => {
   try {
-    const products = await Product.find();
-    res.json(products);
+    const bookings = await Booking.find();
+    res.json(bookings);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// READ ONE
-app.get('/api/products/:id', async (req, res) => {
+// GET Booking by ID
+app.get('/api/bookings/:id', async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ error: 'Product not found' });
-    res.json(product);
+    const booking = await Booking.findById(req.params.id);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    res.json(booking);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// UPDATE
-app.put('/api/products/:id', async (req, res) => {
+// UPDATE Booking
+app.put('/api/bookings/:id', async (req, res) => {
   try {
-    const updated = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updated = await Booking.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-// DELETE
-app.delete('/api/products/:id', async (req, res) => {
+// DELETE Booking
+app.delete('/api/bookings/:id', async (req, res) => {
   try {
-    const deleted = await Product.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Product deleted', deleted });
+    const deleted = await Booking.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: 'Booking not found' });
+    res.json({ message: '✅ Booking deleted', deleted });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// Server Start
+// ==== Start Server ====
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);

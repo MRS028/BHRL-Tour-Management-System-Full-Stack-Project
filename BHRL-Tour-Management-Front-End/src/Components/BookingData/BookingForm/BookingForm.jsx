@@ -6,6 +6,8 @@ import { format } from "date-fns";
 import { toast } from "sonner";
 import useScrollToTop from "@/Hooks/useScrollToTop";
 import useAuth from "@/Hooks/useAuth";
+import useAxiosPublic from "@/Hooks/axiosPublic";
+import { useNavigate } from "react-router-dom";
 
 // --- MOCK LUCIDE-REACT ICONS ---
 // In a real project, you would import these from 'lucide-react'
@@ -194,6 +196,7 @@ const TravelBookingForm = () => {
   const [tripType, setTripType] = useState("one-way");
   const [toastMessage, setToastMessage] = useState("");
   useScrollToTop();
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -214,18 +217,36 @@ const TravelBookingForm = () => {
   });
 
   const {user} = useAuth();
+  const navigate = useNavigate();
   
   const email = user.email;
-  console.log(email);
+//   console.log(email);
 
   const departureDate = watch("departureDate");
   const returnDate = watch("returnDate");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Form Data:", data);
-    // setToastMessage("Your booking has been successfully submitted!");
-    toast.success("Your booking has been successfully submitted!");
-    // setTimeout(() => setToastMessage(""), 4000);
+    try {
+      const res = await axiosPublic.post("/api/bookings", data);
+      console.log(res);
+      if(res.data._id){
+
+        toast.success("Your booking has been successfully submitted!");
+        navigate("/");
+    }else if(!res.data._id){
+        toast.error("Your booking has not been submitted!");
+    }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error(`Due to ${error.message} , Your booking has not been submitted!`);
+    }   
+    // const res = await axiosPublic.post("/booking", data);
+   
+    // console.log(res);
+    
+
+
   };
 
   const FormSection = ({ title, icon, children }) => (
