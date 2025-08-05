@@ -3,36 +3,62 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FiEye,
-  FiEyeOff,
   FiUser,
   FiMail,
   FiLock,
   FiImage,
 } from "react-icons/fi";
-import { FaGoogle, FaGithub } from "react-icons/fa";
-import useAuth from "../../Hooks/useAuth";
-import Swal from "sweetalert2";
+import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
+import useUploadToImgBB from "../../Hooks/useUploadToImgBB"; // ✅ your hook
 import useScrollToTop from "@/Hooks/useScrollToTop";
+import SocialLogin from "./SocialLogin";
 
 const RegisterPage = () => {
   useScrollToTop();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
 
-  // Assuming signInWithGoogle is available in your useAuth hook
-  const { createUser, updateUserData, signInWithGoogle } = useAuth();
+  const uploadToImgBB = useUploadToImgBB(); // ✅ Call your custom hook
+  const { createUser, updateUserData, googleSingIn } = useAuth();
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm();
 
-  // --- Core authentication logic is enhanced but not fundamentally changed ---
+  const onDrop = async (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const uploadedUrl = await uploadToImgBB(file);
+      setValue("photoURL", uploadedUrl); // Update form value
+      // setImagePreview(uploadedUrl); 
+    } catch (err) {
+      console.error("Image upload failed", err);
+      toast.error("Image upload failed!");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { "image/*": [] },
+    multiple: false,
+  });
+
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       return Swal.fire({
@@ -49,20 +75,17 @@ const RegisterPage = () => {
     try {
       const res = await createUser(data.email, data.password);
       const loggedInUser = res.user;
-      console.log(loggedInUser);
 
-      // Now passing the photoURL from the new form field
       await updateUserData(data.name, data.photoURL);
 
       toast.success("Registration successful! Welcome to Tour With BHRL.");
-      navigate("/"); // Navigate to home page after successful registration
+      navigate("/");
     } catch (error) {
       console.error("Registration error:", error);
       Swal.fire({
         icon: "error",
         title: "Registration Failed",
-        text:
-          error.message || "An unexpected error occurred. Please try again.",
+        text: error.message || "An unexpected error occurred. Please try again.",
         confirmButtonColor: "#f59e0b",
         background: "#1e293b",
         color: "#ffffff",
@@ -72,11 +95,10 @@ const RegisterPage = () => {
     }
   };
 
-  // --- Handler for Google Sign-In ---
   const handleGoogleSignIn = () => {
-    signInWithGoogle()
+    googleSingIn()
       .then((result) => {
-        toast.success(`Welcome, ${result.user.displayName}!`);
+        toast.success(`Welcome, ${result.user.displayName} in this website!`);
         navigate("/");
       })
       .catch((error) => {
@@ -93,18 +115,18 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center  p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="mx-auto max-w-7xl grid md:grid-cols-2 bg-white rounded-2xl shadow-2xl overflow-hidden">
-        {/* Left Section - Thematic and Visual */}
+        {/* Left Image Section */}
         <div className="hidden md:block relative">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80')",
+                "url('https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=1770&q=80')",
             }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-slate-900/20"></div>
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-slate-900/20" />
           <div className="relative items-center flex flex-col justify-end h-full p-10 text-white">
             <h1 className="text-4xl font-bold leading-tight mb-3">
               Start Your Journey With Us
@@ -116,7 +138,7 @@ const RegisterPage = () => {
           </div>
         </div>
 
-        {/* Right Section - Registration Form */}
+        {/* Right Form Section */}
         <div className="p-8 sm:p-12 flex flex-col justify-center">
           <h2 className="text-3xl font-bold text-slate-800 text-center mb-2">
             Create an Account
@@ -126,7 +148,7 @@ const RegisterPage = () => {
           </p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Form Fields */}
+            {/* Full Name */}
             <div>
               <label className="block text-slate-700 font-medium mb-1">
                 Full Name
@@ -147,21 +169,40 @@ const RegisterPage = () => {
               )}
             </div>
 
+            {/* Image Upload */}
             <div>
               <label className="block text-slate-700 font-medium mb-1">
-                Photo URL
+                Profile Photo
               </label>
-              <div className="relative">
-                <FiImage className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input
-                  type="url"
-                  {...register("photoURL")}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
-                  placeholder="https://example.com/photo.jpg"
-                />
+              <div
+                {...getRootProps()}
+                className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition ${
+                  isDragActive ? "border-amber-500 bg-amber-50" : "border-slate-300 bg-slate-100"
+                }`}
+              >
+                <input {...getInputProps()} />
+                <FiImage className="mx-auto text-4xl text-slate-400 mb-2" />
+                {uploading ? (
+                  <p className="text-sm text-slate-500">Uploading...</p>
+                ) : imagePreview ? (
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="mx-auto h-40 w-40 object-fill  rounded-lg"
+                  />
+                ) : (
+                  <p className="text-sm text-slate-500">
+                    Drag & drop your photo here, or click to select
+                  </p>
+                )}
               </div>
+              <input type="hidden" {...register("photoURL", { required: "Photo is required" })} />
+              {errors.photoURL && (
+                <p className="text-red-500 text-sm mt-1">{errors.photoURL.message}</p>
+              )}
             </div>
 
+            {/* Email */}
             <div>
               <label className="block text-slate-700 font-medium mb-1">
                 Email Address
@@ -182,16 +223,13 @@ const RegisterPage = () => {
                 />
               </div>
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
               )}
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-slate-700 font-medium mb-1">
-                Password
-              </label>
+              <label className="block text-slate-700 font-medium mb-1">Password</label>
               <div className="relative">
                 <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -200,8 +238,7 @@ const RegisterPage = () => {
                     required: "Password is required",
                     pattern: {
                       value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
-                      message:
-                        "Must include uppercase, lowercase, and a number",
+                      message: "Must include uppercase, lowercase, and a number",
                     },
                   })}
                   className="w-full pl-10 pr-12 py-3 bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition"
@@ -226,6 +263,7 @@ const RegisterPage = () => {
               )}
             </div>
 
+            {/* Confirm Password */}
             <div>
               <label className="block text-slate-700 font-medium mb-1">
                 Confirm Password
@@ -257,6 +295,7 @@ const RegisterPage = () => {
               )}
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -294,36 +333,7 @@ const RegisterPage = () => {
             </button>
           </form>
 
-          {/* Social Logins */}
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-slate-500">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <button
-                onClick={handleGoogleSignIn}
-                type="button"
-                className="w-full inline-flex items-center justify-center py-2.5 px-4 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
-              >
-                <FaGoogle className="w-5 h-5 mr-2 text-red-500" /> Continue with
-                Google
-              </button>
-              <button
-                type="button"
-                className="w-full inline-flex items-center justify-center py-2.5 px-4 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-700 hover:bg-slate-50 transition"
-              >
-                <FaGithub className="w-5 h-5 mr-2 text-slate-800" /> Continue
-                with GitHub
-              </button>
-            </div>
-          </div>
+          <SocialLogin handleGoogleSignIn={handleGoogleSignIn} />
 
           <p className="mt-6 text-center text-sm text-slate-600">
             Already have an account?{" "}

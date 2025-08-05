@@ -151,11 +151,15 @@ const Navbar = () => {
                 >
                   {name}
                 </NavLink>
+                
               ))}
+              <Link to="/bookingtour" className={ctaButton}>
+                   Book Now
+                </Link>
 
               {!isLoggedIn ? (
                 <Link to="/auth/register" className={ctaButton}>
-                  Join Us
+                 Join Us
                 </Link>
               ) : (
                 //  ======= FIX APPLIED HERE =======
