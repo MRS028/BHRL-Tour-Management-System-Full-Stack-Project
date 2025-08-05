@@ -20,86 +20,129 @@ const TourPage = () => {
     { id: 'wildlife', name: 'Wildlife' }
   ];
 
-  const tours = [
-    { 
-      id: 1, 
-      title: "Mountain Trekking Adventure", 
-      location: "Himalayas, Nepal", 
-      duration: "5 Days / 4 Nights", 
-      groupSize: "Max 15", 
-      price: 899, 
-      rating: 4.8, 
-      reviews: 128, 
-      category: "adventure", 
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Experience breathtaking mountain views and challenging trails with expert guides."
-    },
-    { 
-      id: 2, 
-      title: "Cultural Heritage Tour", 
-      location: "Kyoto, Japan", 
-      duration: "7 Days / 6 Nights", 
-      groupSize: "Max 12", 
-      price: 1299, 
-      rating: 4.9, 
-      reviews: 95, 
-      category: "cultural", 
-      image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Immerse yourself in ancient traditions and visit UNESCO World Heritage sites."
-    },
-    { 
-      id: 3, 
-      title: "Tropical Beach Retreat", 
-      location: "Maldives", 
-      duration: "6 Days / 5 Nights", 
-      groupSize: "Max 20", 
-      price: 1599, 
-      rating: 4.7, 
-      reviews: 87, 
-      category: "relaxation", 
-      image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Relax on pristine beaches with crystal clear waters and luxury accommodations."
-    },
-    { 
-      id: 4, 
-      title: "African Safari Experience", 
-      location: "Serengeti, Tanzania", 
-      duration: "8 Days / 7 Nights", 
-      groupSize: "Max 10", 
-      price: 2199, 
-      rating: 5.0, 
-      reviews: 112, 
-      category: "wildlife", 
-      image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Witness the great migration and encounter Africa's big five in their natural habitat."
-    },
-    { 
-      id: 5, 
-      title: "European Cities Explorer", 
-      location: "Paris, Rome & Barcelona", 
-      duration: "10 Days / 9 Nights", 
-      groupSize: "Max 25", 
-      price: 1899, 
-      rating: 4.6, 
-      reviews: 156, 
-      category: "cultural", 
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Discover iconic landmarks and vibrant cultures across Europe's most famous cities."
-    },
-    { 
-      id: 6, 
-      title: "Amazon Rainforest Expedition", 
-      location: "Brazil", 
-      duration: "7 Days / 6 Nights", 
-      groupSize: "Max 8", 
-      price: 1799, 
-      rating: 4.9, 
-      reviews: 73, 
-      category: "adventure", 
-      image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      description: "Explore the world's largest rainforest with expert naturalists and indigenous guides."
-    }
-  ];
+const tours = [
+  { 
+    id: 1, 
+    title: "Mountain Trekking Adventure", 
+    location: "Himalayas, Nepal", 
+    duration: "5 Days / 4 Nights", 
+    groupSize: "Max 15", 
+    price: 899, 
+    rating: 4.8, 
+    reviews: 128, 
+    category: "adventure", 
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    description: "Experience breathtaking mountain views and challenging trails with expert guides. Journey through snow-capped peaks, remote villages, and spiritual monasteries while pushing your physical limits and forming lifelong bonds.",
+    mustHaves: [
+      "Sturdy hiking boots",
+      "Warm layered clothing",
+      "Sunscreen & sunglasses",
+      "Water bottles & energy snacks",
+      "Basic first-aid kit"
+    ]
+  },
+  { 
+    id: 2, 
+    title: "Cultural Heritage Tour", 
+    location: "Kyoto, Japan", 
+    duration: "7 Days / 6 Nights", 
+    groupSize: "Max 12", 
+    price: 1299, 
+    rating: 4.9, 
+    reviews: 95, 
+    category: "cultural", 
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    description: "Immerse yourself in ancient traditions and visit UNESCO World Heritage sites. Experience tea ceremonies, temple tours, seasonal festivals, and serene Zen gardens in the cultural capital of Japan.",
+    mustHaves: [
+      "Comfortable walking shoes",
+      "Modest attire for temples",
+      "Travel adapter",
+      "Japanese phrasebook",
+      "Camera"
+    ]
+  },
+  { 
+    id: 3, 
+    title: "Tropical Beach Retreat", 
+    location: "Maldives", 
+    duration: "6 Days / 5 Nights", 
+    groupSize: "Max 20", 
+    price: 1599, 
+    rating: 4.7, 
+    reviews: 87, 
+    category: "relaxation", 
+    image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    description: "Relax on pristine beaches with crystal clear waters and luxury accommodations. Enjoy overwater villas, spa treatments, snorkeling, and candlelit dinners by the ocean.",
+    mustHaves: [
+      "Swimwear",
+      "Sunblock",
+      "Flip-flops & beachwear",
+      "Underwater camera",
+      "Snorkeling mask (optional)"
+    ]
+  },
+  { 
+    id: 4, 
+    title: "African Safari Experience", 
+    location: "Serengeti, Tanzania", 
+    duration: "8 Days / 7 Nights", 
+    groupSize: "Max 10", 
+    price: 2199, 
+    rating: 5.0, 
+    reviews: 112, 
+    category: "wildlife", 
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    description: "Witness the great migration and encounter Africa's big five in their natural habitat. Stay in safari lodges and traverse vast landscapes in 4x4 vehicles with experienced guides.",
+    mustHaves: [
+      "Neutral-colored clothing",
+      "Binoculars",
+      "Camera with zoom lens",
+      "Hat & insect repellent",
+      "Vaccination card"
+    ]
+  },
+  { 
+    id: 5, 
+    title: "European Cities Explorer", 
+    location: "Paris, Rome & Barcelona", 
+    duration: "10 Days / 9 Nights", 
+    groupSize: "Max 25", 
+    price: 1899, 
+    rating: 4.6, 
+    reviews: 156, 
+    category: "cultural", 
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    description: "Discover iconic landmarks and vibrant cultures across Europe's most famous cities. From the Eiffel Tower to the Colosseum and Sagrada Familia, indulge in art, cuisine, and history.",
+    mustHaves: [
+      "Passport with Schengen visa",
+      "Comfortable shoes for walking tours",
+      "Power adapter (EU type)",
+      "Travel insurance",
+      "Map or city guide apps"
+    ]
+  },
+  { 
+    id: 6, 
+    title: "Amazon Rainforest Expedition", 
+    location: "Brazil", 
+    duration: "7 Days / 6 Nights", 
+    groupSize: "Max 8", 
+    price: 1799, 
+    rating: 4.9, 
+    reviews: 73, 
+    category: "adventure", 
+    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    description: "Explore the world's largest rainforest with expert naturalists and indigenous guides. Paddle through lush waterways, hike jungle trails, and encounter diverse wildlife in this once-in-a-lifetime eco-adventure.",
+    mustHaves: [
+      "Waterproof gear",
+      "Insect repellent & sunscreen",
+      "Flashlight or headlamp",
+      "Binoculars",
+      "Reusable water bottle"
+    ]
+  }
+];
+
 
   // Filtering logic
   const filteredTours = tours.filter(tour => {

@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { format } from "date-fns";
 import { toast } from "sonner";
+import useScrollToTop from "@/Hooks/useScrollToTop";
+import useAuth from "@/Hooks/useAuth";
 
 // --- MOCK LUCIDE-REACT ICONS ---
 // In a real project, you would import these from 'lucide-react'
@@ -180,7 +182,7 @@ const Checkbox = React.forwardRef(({ className, ...props }, ref) => (
 const Toaster = ({ message }) => {
     if (!message) return null;
     return (
-        <div className="fixed top-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in-out">
+        <div className="relative top-5 right-5 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in-out">
             <p className="font-bold">Success!</p>
             <p>{message}</p>
         </div>
@@ -191,6 +193,7 @@ const Toaster = ({ message }) => {
 const TravelBookingForm = () => {
   const [tripType, setTripType] = useState("one-way");
   const [toastMessage, setToastMessage] = useState("");
+  useScrollToTop();
 
   const {
     register,
@@ -209,6 +212,11 @@ const TravelBookingForm = () => {
       terms: false,
     },
   });
+
+  const {user} = useAuth();
+  
+  const email = user.email;
+  console.log(email);
 
   const departureDate = watch("departureDate");
   const returnDate = watch("returnDate");
@@ -341,19 +349,43 @@ const TravelBookingForm = () => {
             </div>
         </FormSection>
 
-        <FormSection title="Contact & Payment" icon={<CreditCard className="w-6 h-6 text-yellow-600"/>}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="you@example.com" {...register("email")} />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-                </div>
-                <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="(123) 456-7890" {...register("phone")} />
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
-                </div>
+    
+          {/* Payment Method Section */}
+        <FormSection title="Contact & Payment" icon={<CreditCard className="w-6 h-6 text-yellow-600" />}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address</Label>
+              <Input id="email" disabled defaultValue={email} type="email" placeholder="you@example.com" {...register("email")} />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input id="phone" type="tel" placeholder="(123) 456-7890" {...register("phone")} />
+              {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="payment">Payment Method</Label>
+            <Controller
+              name="payment"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  id="payment"
+                  className="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="card">Credit / Debit Card</option>
+                  <option value="bkash">bKash</option>
+                  <option value="nagad">Nagad</option>
+                  <option value="rocket">Rocket</option>
+                  <option value="paypal">PayPal</option>
+                </select>
+              )}
+            />
+            {errors.payment && <p className="text-red-500 text-xs mt-1">{errors.payment.message}</p>}
+          </div>
         </FormSection>
 
         <div className="space-y-4 bg-white p-6 rounded-lg shadow-sm border border-slate-200/80">
