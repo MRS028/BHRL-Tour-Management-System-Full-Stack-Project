@@ -57,64 +57,85 @@ const Navbar = () => {
     <>
       {/* ===== Top Bar - Minor tweaks for consistency ===== */}
       <div className="bg-gradient-to-r from-blue-800 via-purple-700 to-pink-600 text-white text-sm py-2 shadow-lg hidden md:block">
-  <div className="max-w-7xl mx-auto px-4 flex justify-between items-center flex-wrap gap-y-2">
-    
-    {/* Left Info: Contact, Hours, Location */}
-    <div className="flex flex-wrap items-center gap-6">
-      {/* Email */}
-      <div className="flex items-center gap-2">
-        <i className="fas fa-envelope text-yellow-300"></i>
-        <a href="mailto:support@travelo.com" className="hover:underline hover:text-yellow-200 transition">
-          support@travelo.com
-        </a>
-      </div>
+        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center flex-wrap gap-y-2">
+          {/* Left Info: Contact, Hours, Location */}
+          <div className="flex flex-wrap items-center gap-6">
+            {/* Email */}
+            <div className="flex items-center gap-2">
+              <i className="fas fa-envelope text-yellow-300"></i>
+              <a
+                href="mailto:support@travelo.com"
+                className="hover:underline hover:text-yellow-200 transition"
+              >
+                support@travelo.com
+              </a>
+            </div>
 
-      {/* Phone */}
-      <div className="flex items-center gap-2">
-        <i className="fas fa-phone-alt text-green-300"></i>
-        <a href="tel:+880123456789" className="hover:underline hover:text-green-200 transition">
-          +880 1234-56789
-        </a>
-      </div>
+            {/* Phone */}
+            <div className="flex items-center gap-2">
+              <i className="fas fa-phone-alt text-green-300"></i>
+              <a
+                href="tel:+880123456789"
+                className="hover:underline hover:text-green-200 transition"
+              >
+                +880 1234-56789
+              </a>
+            </div>
 
-      {/* Working Hours */}
-      <div className="hidden lg:flex items-center gap-2">
-        <i className="fas fa-clock text-orange-300"></i>
-        <span>Mon–Sat: 9:00 AM – 8:00 PM</span>
-      </div>
+            {/* Working Hours */}
+            <div className="hidden lg:flex items-center gap-2">
+              <i className="fas fa-clock text-orange-300"></i>
+              <span>Mon–Sat: 9:00 AM – 8:00 PM</span>
+            </div>
 
-      {/* Location */}
-      <div className="hidden xl:flex items-center gap-2">
-        <i className="fas fa-map-marker-alt text-red-300"></i>
-        <span>Gulshan, Dhaka, Bangladesh</span>
-      </div>
-    </div>
+            {/* Location */}
+            <div className="hidden xl:flex items-center gap-2">
+              <i className="fas fa-map-marker-alt text-red-300"></i>
+              <span>Gulshan, Dhaka, Bangladesh</span>
+            </div>
+          </div>
 
-    {/* Right Info: Social + Offer */}
-    <div className="flex items-center gap-4">
-      {/* Social Icons */}
-      <div className="flex gap-3 text-lg">
-        <a href="#" title="Facebook" className="hover:text-blue-300 transition transform hover:scale-110">
-          <i className="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" title="Twitter" className="hover:text-cyan-300 transition transform hover:scale-110">
-          <i className="fab fa-twitter"></i>
-        </a>
-        <a href="#" title="Instagram" className="hover:text-pink-300 transition transform hover:scale-110">
-          <i className="fab fa-instagram"></i>
-        </a>
-        <a href="#" title="YouTube" className="hover:text-red-400 transition transform hover:scale-110">
-          <i className="fab fa-youtube"></i>
-        </a>
-      </div>
+          {/* Right Info: Social + Offer */}
+          <div className="flex items-center gap-4">
+            {/* Social Icons */}
+            <div className="flex gap-3 text-lg">
+              <a
+                href="#"
+                title="Facebook"
+                className="hover:text-blue-300 transition transform hover:scale-110"
+              >
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                title="Twitter"
+                className="hover:text-cyan-300 transition transform hover:scale-110"
+              >
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                title="Instagram"
+                className="hover:text-pink-300 transition transform hover:scale-110"
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                title="YouTube"
+                className="hover:text-red-400 transition transform hover:scale-110"
+              >
+                <i className="fab fa-youtube"></i>
+              </a>
+            </div>
 
-      {/* Special Offer */}
-      <span className="bg-yellow-300 text-purple-900 font-bold px-3 py-1.5 rounded-full text-xs uppercase tracking-wider shadow-md animate-bounce hover:scale-105 transition">
-        🎒 Travel Carnival Week – Save up to 40%!
-      </span>
-    </div>
-  </div>
-</div>
+            {/* Special Offer */}
+            <span className="bg-yellow-300 text-purple-900 font-bold px-3 py-1.5 rounded-full text-xs uppercase tracking-wider shadow-md animate-bounce hover:scale-105 transition">
+              🎒 Travel Carnival Week – Save up to 40%!
+            </span>
+          </div>
+        </div>
+      </div>
 
       {/* ===== Main Navbar ===== */}
       <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg shadow-lg border-b border-slate-500/20">
@@ -151,15 +172,14 @@ const Navbar = () => {
                 >
                   {name}
                 </NavLink>
-                
               ))}
               <Link to="/bookingtour" className={ctaButton}>
-                   Book Now
-                </Link>
+                Book Now
+              </Link>
 
               {!isLoggedIn ? (
                 <Link to="/auth/register" className={ctaButton}>
-                 Join Us
+                  Join Us
                 </Link>
               ) : (
                 //  ======= FIX APPLIED HERE =======
@@ -185,6 +205,12 @@ const Navbar = () => {
                       className="block px-4 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors"
                     >
                       Dashboard
+                    </Link>
+                    <Link
+                      to="/myprofile"
+                      className="block px-4 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                    >
+                      My Profile
                     </Link>
                     {isAdmin && (
                       <Link

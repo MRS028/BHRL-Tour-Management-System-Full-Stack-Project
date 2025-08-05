@@ -12,6 +12,7 @@ import AdminDashboard from "../Dashboard/AdninDashboard/AdminDashboard";
 import AuthLayout from "../Components/Login and Register/AuthLayout";
 import BookingForm from "@/Components/BookingData/BookingForm/BookingForm";
 import PrivateRoute from "./PrivateRoute";
+import UserProfilePage from "@/Dashboard/UserDashboard/userProfilePage";
 
 const Router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const Router = createBrowserRouter([
       {
         path: "/bookingtour",
         element: <PrivateRoute><BookingForm/></PrivateRoute>
+      },
+      {
+        path: "/myprofile",
+        element: <PrivateRoute><UserProfilePage/></PrivateRoute>
       }
     ],
   },
