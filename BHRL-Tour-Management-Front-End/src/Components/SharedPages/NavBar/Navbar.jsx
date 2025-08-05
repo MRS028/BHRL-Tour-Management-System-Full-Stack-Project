@@ -307,6 +307,12 @@ const Navbar = () => {
                       Admin Panel
                     </Link>
                   )}
+                   <Link
+                      to="/myprofile"
+                      className="block px-2 py-2 hover:bg-slate-700 hover:text-amber-400 transition-colors"
+                    >
+                      My Profile
+                    </Link>
                   <button
                     onClick={() => {
                       handleLogOut();

@@ -120,7 +120,7 @@ const UserProfilePage = () => {
     );
 
     return (
-        <div className="min-h-screen bg-slate-100 p-4 sm:p-6 lg:p-8">
+        <div className="min-h-screen  border m-4 rounded-2xl p-4 sm:p-6 lg:p-8">
             <Toast message={toastMessage} />
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Column */}
