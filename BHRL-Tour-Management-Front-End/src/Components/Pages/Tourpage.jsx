@@ -37,7 +37,7 @@ const TourPage = () => {
   });
 
   return (
-    <div className="min-h-screen    max-w-7xl mx-auto">
+    <div className="min-h-screen w-full">
       {/* Page Header */}
       <section className="bg-slate-800  rounded-b-2xl py-16 text-white text-center shadow-lg">
         <div className="container mx-auto px-4">
@@ -46,7 +46,7 @@ const TourPage = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 max-w-7xl py-12">
         {/* Search and Filter Section */}
         <div className="bg-white rounded-xl shadow-md p-6 mb-10  top-24 z-40">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">

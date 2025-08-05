@@ -17,7 +17,7 @@ const Footer = () => {
     "text-slate-400 hover:text-amber-400 transform hover:-translate-y-1 transition-all duration-300";
 
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8 border-t-4 border-amber-500">
+    <footer className="bg-slate-900 text-slate-300 pt-12 pb-8 border-t-4 border-amber-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           {/* Column 1: Company Info */}
