@@ -1,7 +1,7 @@
 import useScrollToTop from '@/Hooks/useScrollToTop';
 import React from 'react';
 import { FaClock, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
-
+import sectionTitle from '../SharedPages/SectionTitle/sectionTitle';
 
 const ContactPage = () => {
   useScrollToTop();
@@ -18,7 +18,7 @@ const ContactPage = () => {
       {/* Page Header */}
       <section className="bg-slate-800 py-16 w-[100%] text-white text-center shadow-lg">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-slate-300 max-w-3xl mx-auto">Have questions or need help planning your next trip? We're here for you!</p>
         </div>
       </section>
