@@ -1,36 +1,29 @@
 import React from "react";
+import { motion } from "framer-motion";
+import useScrollToTop from "@/Hooks/useScrollToTop";
 
 // --- Mocking dependencies to ensure the component is self-contained ---
 
 // 1. Mock framer-motion
-const motion = {
-  div: React.forwardRef(({ children, ...props }, ref) => (
-    <div ref={ref} {...props}>
-      {children}
-    </div>
-  )),
-  h1: React.forwardRef(({ children, ...props }, ref) => (
-    <h1 ref={ref} {...props}>
-      {children}
-    </h1>
-  )),
-  p: React.forwardRef(({ children, ...props }, ref) => (
-    <p ref={ref} {...props}>
-      {children}
-    </p>
-  )),
-};
+// const motion = {
+//   div: React.forwardRef(({ children, ...props }, ref) => (
+//     <div ref={ref} {...props}>
+//       {children}
+//     </div>
+//   )),
+//   h1: React.forwardRef(({ children, ...props }, ref) => (
+//     <h1 ref={ref} {...props}>
+//       {children}
+//     </h1>
+//   )),
+//   p: React.forwardRef(({ children, ...props }, ref) => (
+//     <p ref={ref} {...props}>
+//       {children}
+//     </p>
+//   )),
+// };
 
-// 2. Mock useScrollToTop hook
-const useScrollToTop = () => {
-  React.useEffect(() => {
-    try {
-      window.scrollTo(0, 0);
-    } catch (e) {
-      console.error("Could not scroll to top", e);
-    }
-  }, []);
-};
+
 
 // 3. Inline SVG Icons
 const FaHeart = () => (
